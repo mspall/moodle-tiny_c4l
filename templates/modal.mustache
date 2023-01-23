@@ -29,39 +29,48 @@
 
     Example context (json):
     {
-        "elementid": "exampleId",
+        "elementid": "exampleId"
         "buttons": [
           {"id": "randomid"},
-          {"imageClass": "c4l-classname"},
-          {"name": "component name"},
+          {"imageClass": "c4l-classname"}
+          {"name": "component name"}
           {"htmlcode": "<div>Text</div>"}
-        ]
+          {"previewCode": "<div>Text</div>"}
+        ],
     }
 }}
+
 {{< core/modal }}
     {{$title}}
         {{#str}} pluginname, tiny_c4l {{/str}}
     {{/title}}
     {{$body}}
-        <div id="{{elementid}}" class="c4l-plugin-container">
-            <div class="c4l-buttons-grid">
-                {{#buttons}}
-                    <button class="c4l-dialog-button {{imageClass}}" data-id="{{id}}">
-                        {{name}}
-                        {{#preview}}
-                            <span class="c4l-eye-preview" role="presentation" aria-controls="code-preview-{{id}}"></span>
-                        {{/preview}}
-                    </button>
-                {{/buttons}}
+        <div class="c4l-modal-container">
+            <div id="{{elementid}}" class="c4l-plugin-container {{#preview}}c4l-preview-active{{/preview}}">
+                <div class="c4l-buttons-grid">
+                    {{#buttons}}
+                        <button class="c4l-dialog-button {{imageClass}}" data-id="{{id}}">
+                            {{name}}
+                            {{#preview}}
+                                <span class="c4l-preview" role="presentation" aria-controls="code-preview-{{id}}"></span>
+                            {{/preview}}
+                        </button>
+                    {{/buttons}}
+                </div>
+                {{#preview}}
+                    <div class="c4l-preview-container">
+                        <div class="c4l-preview-column">
+                            <div class="c4l-code-preview">
+                                {{#buttons}}
+                                    <div data-id="code-preview-{{id}}" class="c4l-component-code c4l-hidden" role="presentation">{{{previewCode}}}</div>
+                                {{/buttons}}
+                            </div>
+                            <div id="no-selected-text" class="no-selected-visible">{{#str}} showpreviewtext, tiny_c4l {{/str}}</div>
+                            <div class="c4l-text-preview">{{textpreview}}</div>
+                        </div>
+                    </div>
+                {{/preview}}
             </div>
         </div>
-        {{#preview}}
-            <div class="c4l-text-preview">{{textpreview}}</div>
-            <div class="c4l-code-preview">
-                {{#buttons}}
-                    <div data-id="code-preview-{{id}}" class="c4l-component-code c4l-hidden" role="presentation">{{{htmlcode}}}</div>
-                {{/buttons}}
-            </div>
-        {{/preview}}
     {{/body}}
 {{/ core/modal }}

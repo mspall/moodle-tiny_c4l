@@ -50,3 +50,4 @@ $string['readingcontext'] = 'Reading context';
 $string['reminder'] = 'Reminder';
 $string['tag'] = 'Tag';
 $string['tip'] = 'Tip';
+$string['showpreviewtext'] = 'Place the pointer on any component to see its preview.';

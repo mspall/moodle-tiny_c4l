@@ -1,9 +1,7 @@
 /* PLUGIN UI STYLES */
 
 .c4l-component-code {
-    transition-property: all;
-    transition-timing-function: ease-in-out;
-    transition-duration: .7s;
+    transition: opacity .3s ease-in-out;
 }
 
 .c4l-hidden {
@@ -16,7 +14,6 @@
 .c4l-visible {
     visibility: visible;
     opacity: 1;
-    max-height: 500px;
 }
 
 .c4l-dialog-button {
@@ -43,8 +40,8 @@
 .c4l-dialog-button:hover,
 .c4l-dialog-button:active {
     -webkit-transform: scale(1.02, 1.04);
-        -ms-transform: scale(1.02, 1.04);
-            transform: scale(1.02, 1.04);
+    -ms-transform: scale(1.02, 1.04);
+    transform: scale(1.02, 1.04);
 }
 
 .c4l-dialog-button::before {
@@ -60,7 +57,13 @@
     left: 58px;
 }
 
+.c4l-modal-container {
+    display: flex;
+    flex-direction: row;
+}
+
 .c4l-plugin-container {
+    display: flex;
     padding: 1rem;
     background-color: #f6f7f8;
     border: 1px solid #dee2e6;
@@ -71,41 +74,144 @@
     flex-wrap: wrap;
     justify-content: flex-start;
     margin-bottom: 0;
+    width: 100%;
+}
+
+.c4l-preview-container {
+    display: none;
 }
 
 .c4l-text-preview {
     display: none;
 }
 
-.c4l-text-preview {
-    background-color: #f6f7f8;
-}
-
-.c4l-code-preview {
-    overflow: hidden;
-    transition-property: all;
-    transition-timing-function: ease-in-out;
-    transition-duration: 1s;
-    border-color: #dee2e6;
-    border-style: hidden solid solid solid;
-    border-width: 1px;
-}
 
 .c4l-code-preview .c4l-component-code {
-    -webkit-transform: scale(0.7);
-        -ms-transform: scale(0.7);
-            transform: scale(0.7);
+    position: absolute;
+    top: 0px;
 }
 
-.c4l-dialog-button .c4l-eye-preview {
+.c4l-code-preview .c4l-component-code .c4l-keyconcept,
+.c4l-code-preview .c4l-component-code .c4l-tip,
+.c4l-code-preview .c4l-component-code .c4l-reminder,
+.c4l-code-preview .c4l-component-code .c4l-attention,
+.c4l-code-preview .c4l-component-code .c4l-quote,
+.c4l-code-preview .c4l-component-code .c4l-dodontcards,
+.c4l-code-preview .c4l-component-code .c4l-readingcontext,
+.c4l-code-preview .c4l-component-code .c4l-example,
+.c4l-code-preview .c4l-component-code .c4l-figure,
+.c4l-code-preview .c4l-component-code .c4l-expectedfeedback,
+.c4l-code-preview .c4l-component-code .c4l-allpurposecard {
+    -webkit-transform: scale(0.7);
+    -ms-transform: scale(0.7);
+    transform: scale(0.7);
+    max-width: 90%;
+}
+
+.c4l-code-preview .c4l-component-code .c4l-proceduralcontext {
+    -webkit-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    transform: scale(0.8);
+    max-width: 90%;
+}
+
+.c4l-code-preview .c4l-component-code .c4l-keyconcept,
+.c4l-code-preview .c4l-component-code .c4l-tip,
+.c4l-code-preview .c4l-component-code .c4l-reminder,
+.c4l-code-preview .c4l-component-code .c4l-attention,
+.c4l-code-preview .c4l-component-code .c4l-readingcontext {
+    top: 108px;
+    left: -16px;
+}
+
+.c4l-code-preview .c4l-component-code .c4l-quote,
+.c4l-code-preview .c4l-component-code .c4l-dodontcards,
+.c4l-code-preview .c4l-component-code .c4l-readingcontext,
+.c4l-code-preview .c4l-component-code .c4l-figure,
+.c4l-code-preview .c4l-component-code .c4l-tag,
+.c4l-code-preview .c4l-component-code .c4l-proceduralcontext {
+    position: relative;
+}
+
+.c4l-code-preview .c4l-component-code .c4l-quote {
+    top: 132px;
+    left: -16px;
+}
+
+.c4l-code-preview .c4l-component-code .c4l-dodontcards {
+    top: 26px;
+    left: -6px;
+}
+
+.c4l-code-preview .c4l-component-code .c4l-readingcontext {
+    top: 88px;
+    left: -17px;
+}
+
+.c4l-code-preview .c4l-component-code .c4l-example {
+    top: 64px;
+    left: -16px;
+}
+
+.c4l-code-preview .c4l-component-code .c4l-figure {
+    top: 76px;
+    left: -16px;
+}
+
+.c4l-code-preview .c4l-component-code .c4l-tag {
+    top: 212px;
+    left: 56px;
+}
+
+.c4l-code-preview .c4l-component-code .c4l-estimatedtime {
+    top: 210px;
+    left: 64px;
+}
+
+.c4l-code-preview .c4l-component-code .c4l-duedate {
+    top: 210px;
+    left: 37px;
+}
+
+.c4l-code-preview .c4l-component-code .c4l-proceduralcontext {
+    top: 174px;
+    left: 14px;
+}
+
+.c4l-code-preview .c4l-component-code .c4l-gradingvalue {
+    top: 210px;
+    left: 30px;
+}
+
+.c4l-code-preview .c4l-component-code .c4l-expectedfeedback,
+.c4l-code-preview .c4l-component-code .c4l-allpurposecard {
+    top: 128px;
+    left: -16px;
+}
+
+.c4l-code-preview .c4l-component-code .c4l-inlinetag {
+    top: 210px;
+    left: 63px;
+}
+
+.c4l-dialog-button .c4l-preview {
     display: none;
 }
 
-.c4l-dialog-button .c4l-eye-preview:hover {
+.c4l-dialog-button .c4l-preview:hover {
     -webkit-transform: scale(1.04);
-        -ms-transform: scale(1.04);
-            transform: scale(1.04);
+    -ms-transform: scale(1.04);
+    transform: scale(1.04);
 }
+
+.no-selected-hidden {
+    visibility: hidden;
+}
+
+.no-selected-visible {
+    visibility: visible;
+}
+
 
 /* Contextual components buttons */
 
@@ -751,7 +857,7 @@
 /* Inline Tag */
 
 .c4l-inlinetag {
-    font-weight: 900;
+    font-weight: 700;
     font-size: 10px;
     text-transform: uppercase;
     letter-spacing: .2px;
@@ -883,24 +989,53 @@
         overflow-y: hidden;
     }
 
-    .c4l-dialog-button .c4l-eye-preview {
-        position: absolute;
-        top: 5px;
-        right: 5px;
-        display: block;
-        background-image: url([[pix:tiny_c4l|c4l_preview_icon]]);
-        background-repeat: no-repeat;
-        height: 16px;
-        width: 16px;
+    .c4l-preview-active .c4l-buttons-grid {
+        width: 67%;
+    }
+
+    .c4l-preview-column {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        height: 100%;
+        background-color: #fff;
     }
 
     .c4l-text-preview {
+        display: flex;
+        align-self: flex-end;
+        order: -1;
+        text-transform: uppercase;
+        color: #fff;
+        font-size: .6em;
+        font-weight: 600;
+        padding: 4px 6px 3px;
+        letter-spacing: .3px;
+        text-align: right;
+        background-color: #515d78;
+        margin: 8px;
+        border-radius: 6px;
+    }
+
+    .c4l-preview-container {
         display: block;
-        color: #444;
-        font-weight: bold;
-        padding: 5px;
-        border: 1px solid #dee2e6;
-        margin-top: 5px;
+        width: 31%;
+        height: 100%;
+        margin-left: 2%;
+    }
+
+    #no-selected-text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: .82em;
+        color: #9197a2;
+        padding: 18px;
+        line-height: 1.3;
+        border: 1px solid #e0e5ef;
+        border-radius: 8px;
+        margin: 117px 36px;
+        box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.07);
     }
 
     .c4l-dialog-button {

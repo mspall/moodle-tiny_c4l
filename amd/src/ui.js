@@ -136,13 +136,15 @@ const handleModalClick = (event, editor, modal) => {
  * @param {bool} show
  */
 const handleModalMouseEvent = (event, modal, show) => {
-    const isPreview = event.target.className == 'c4l-eye-preview';
+    const isPreview = event.target.classList.contains('c4l-dialog-button');
     const button = event.target.closest('button');
+    const noSelectionText = document.getElementById('no-selected-text');
 
     if (isPreview && button) {
         const selectedButton = button.dataset.id;
         const node = modal.getRoot()[0].querySelector('div[data-id="code-preview-' + selectedButton + '"]');
-
+        noSelectionText.classList.remove('no-selected-visible');
+        noSelectionText.classList.add('no-selected-hidden');
         if (node) {
             if (show) {
                 node.parentElement.classList.remove('c4l-hidden');
@@ -156,6 +158,11 @@ const handleModalMouseEvent = (event, modal, show) => {
                 node.classList.add('c4l-hidden');
             }
         }
+    } else {
+        noSelectionText.classList.remove('no-selected-hidden');
+        noSelectionText.classList.add('no-selected-visible');
+        // eslint-disable-next-line no-console
+        console.log(noSelectionText);
     }
 };
 
@@ -187,6 +194,7 @@ const getButtons = async(editor) => {
     const sel = editor.selection.getContent();
     let componentCode = '';
     let placeholder = '';
+    let previewCode = '';
 
     // Iterate over components.
     Components.map((component, index) => {
@@ -194,6 +202,7 @@ const getButtons = async(editor) => {
             placeholder = (sel.length > 0 ? sel : component.text);
             componentCode = component.code;
             componentCode = componentCode.replace('{{PLACEHOLDER}}', placeholder);
+            previewCode = component.previewCode;
         }
 
         buttons.push({
@@ -201,6 +210,7 @@ const getButtons = async(editor) => {
             name: strings.get(component.name),
             imageClass: component.imageClass,
             htmlcode: componentCode,
+            previewCode
         });
     });
 
